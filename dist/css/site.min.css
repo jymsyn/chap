@@ -1,0 +1,1 @@
+body:before{white-space:pre;font-family:monospace;content:"Error: Invalid CSS after \"*\": expected selector, was \"{\"\A         on line 1 of ./src/sass/site.sass\A \A 1: *{\A 2:   font-family: \"Proxima Nova\"\A 3: }"}

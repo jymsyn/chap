@@ -1,0 +1,111 @@
+<navbar></navbar>
+<div class="view">
+  <div class="ui container">
+      
+    <!--Step Sequencer -->
+    <h3 class="ui center aligned header">Step 2</h3>
+    <div class="ui last container">
+      <div class="ui three steps">
+        <div class="step">
+          <div class="content">
+            <div class="title"><a ui-sref="UserAccount">Update Account Information</a></div>
+            <div class="description">Enter information about yourself</div>
+          </div>
+        </div>
+        <div class="active step">
+          <div class="content">
+            <div class="title"><a ui-sref="ManageHairstyles">Add beauty services</a></div>
+            <div class="description">Enter the services you offer</div>
+          </div>
+        </div>
+        <div class="disabled step">
+          <div class="content">
+            <div class="title">Connect Your Instagram</div>
+            <div class="description">Link your instagram to your account</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <br>
+    <div class="ui divider"></div>
+
+    <!--Hairstyle Container -->
+    
+    <h2 class="ui center aligned header">Manage Hairstyles</h3>
+    <form class="ui form segment animated fadeIn">
+      <h4 class="ui dividing header">Add Hairstyle/Service you offer:</h4>
+      <div class="fields">
+        <div class="eight wide field">
+          <label>Name</label>
+          <input type="text" ng-model="vm.hairstyle.name" placeholder="Name of Service">
+        </div>
+        <div class="four wide field">
+          <label>Price</label>
+          <input type="text" placeholder="Price" ng-model="vm.hairstyle.price">
+        </div>
+        <div class="four wide field">
+          <label>Duration</label>
+          <select class="ui fluid dropdown" ng-model="vm.hairstyle.duration">
+            <option value="30">30 minutes</option>
+            <option value="45">45 minutes</option>
+            <option value="60">Hour</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="field">
+        <label>Description</label>
+        <input type="text" placeholder="Description of service" ng-model="vm.hairstyle.description">
+      </div>
+      
+      <br>
+      
+      <h4 class="ui dividing header">Add either image url or instagram link to showcase your service</h4>
+      <div class="fields">
+        <div class="eight wide field">
+          <label>Image url</label>
+          <input ng-model="vm.hairstyle.img" type="text" placeholder="Image URL of hairstyle">
+        </div>
+        <div class="eight wide field">
+          <label>Instagram Link</label>
+          <input ng-model="vm.hairstyle.igurl" type="text" placeholder="URL of the instagram post you want to add">
+        </div>
+      </div>
+      
+      <div class="ui button" type="submit" ng-click="vm.addHairstyle()">Add Service</div>
+    </form>
+    
+    <br>
+    <div class="ui divider"></div>
+    
+    <!--List of Hairstyles -->
+    <h2 class="ui center aligned header">Styles</h2>
+    <div class="ui segment" ng-repeat="style in vm.styles">
+      <div class="ui items" ng-show="!vm.editing">
+        <div class="item animated fadeIn">
+          <div class="ui small image">
+            <img ng-src="{{style.img}}}" ng-show="style.img">
+            <img ng-src="{{style.igimg}}" ng-show="style.igimg">
+          </div>
+          <div class="content">
+            <div class="header">
+              {{style.name}} 
+            </div>
+            <button class="ui right floated red button" ng-click="vm.delete(style)">Delete</button>
+            <a class="ui right floated teal button" ng-href="/editstyle/{{style._id}}">Edit</a>
+            <div class="meta">
+              <span class="price">${{style.price}}</span> |
+              <span class="stay">Duration: {{style.duration}} minutes</span>
+            </div>
+            <div class="description">
+              <p>{{style.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<footer></footer>

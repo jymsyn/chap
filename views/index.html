@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+  <title>chap</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/" />
+  <link rel="stylesheet" type="text/css" href="vendor/semantic/dist/semantic.min.css">
+  <link rel="stylesheet" href="/scripts/semantic-ui-calendar/dist/calendar.min.css" />
+  <link rel="stylesheet" href="/css/site.css"/>
+  <link rel="stylesheet" href="/css/mobileresponsive.css"/>
+  <link rel="stylesheet" href="/css/proximaFonts.css"/>
+  <link rel="stylesheet" href="/scripts/animate.css/animate.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<style media="screen">
+  #page-loading{
+    background-image: url('/images/squares.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+</style>
+
+<body>
+  <div id="page-loading">
+    <img style="display:block; margin:0 auto;">
+  </div>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(event) {
+        /*VANILLA JAVASCRIPT*/
+        var element = document.getElementById("page-loading");
+        element.parentNode.removeChild(element);
+    });
+  </script>
+  
+  <div class="well"  ui-view></div>    
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  
+  <!-- Semantic -->
+  <script src="/vendor/semantic/dist/semantic.min.js"></script>
+  <script type="text/javascript" src="/scripts/semantic-ui-calendar/dist/calendar.min.js"></script>
+  
+  <!-- Angular core -->
+  <script src="/scripts/angular/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="/scripts/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="/scripts/angular-ui-mask/dist/mask.js"></script>
+  <script src="/scripts/angular-resource/angular-resource.min.js"></script>
+  <script src="/scripts/moment/moment.js"></script>
+  
+  <!-- Google Maps -->
+  <script src="/scripts/ngmap/build/scripts/ng-map.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLJoF1zdrJ7OmtYYw37yDyN7JHJpC-moI"></script>
+  
+  
+  <!-- Main App -->
+  <script src="/js/app.js"></script>
+  
+  <!-- Services -->
+  <script src="/js/services/services.js"></script>
+  <script src="/js/services/UserService.js"></script>
+  <script src="/js/services/HairstyleService.js"></script>
+  <script src="/js/services/AppointmentService.js"></script>
+  <script src="/js/services/IGConverterService.js"></script>
+  <script src="/js/services/HTTPFactory.js"></script>
+  
+  <!-- Controllers -->
+  <script src="/js/controllers/NavbarController.js"></script>
+  <script src="/js/controllers/GlobalController.js"></script>
+  <script src="/js/controllers/UserController.js"></script>
+  <script src="/js/controllers/HomeController.js"></script>
+  <script src="/js/controllers/HairstyleController.js"></script>
+  <script src="/js/controllers/EditHairstyleController.js"></script>
+  <script src="/js/controllers/EditUserController.js"></script>
+  <script src="/js/controllers/AppointmentsController.js"></script>
+  <script src="/js/controllers/BookAppointmentController.js"></script>
+  <script src="/js/controllers/ProfileController.js"></script>
+  
+  <!-- Directives -->
+  <script src="/js/Directives/NavbarDirective.js"></script>
+  <script src="/js/Directives/BackgroundImageDirective.js"></script>
+  <script src="/js/Directives/DatePickerDirective.js"></script>
+  <script src="/js/Directives/FooterDirective.js"></script>
+  <script src="/js/Directives/ModalDirective.js"></script>
+  <script src="/js/Directives/TabMenuDirective.js"></script>
+
+</body>
+
+</html>

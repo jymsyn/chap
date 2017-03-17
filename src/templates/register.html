@@ -1,0 +1,51 @@
+<style type="text/css">
+  .column {
+    max-width: 450px;
+    margin-top: 15%;
+  }
+</style>
+
+
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui violet header">
+      <div class="content">
+        Register
+      </div>
+    </h2>
+    <form class="ui large form" ng-submit="vm.register()">
+      <div class="ui segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input ng-model="vm.userInfo.username" type="text" placeholder="Username">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input ng-model="vm.userInfo.email" type="text" name="email" placeholder="E-mail address">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input ng-model="vm.userInfo.password" type="password" name="password" placeholder="Password">
+          </div>
+        </div>
+      <div class="ui horizontal section divider">Choose user account type</div>
+      <div class="field">
+        <label>Account Type</label>
+        <select ng-model="vm.userInfo.role" class="ui fluid dropdown">
+          <option value="client">Client</option>
+          <option value="provider">Barber/Service Provider</option>
+        </select>
+      </div>
+        <button ng-click="nc.showNav = true" class="ui fluid large violet submit button" type="submit">Sign Up</button>
+      </div>
+
+      <div class="ui error message"></div>
+
+    </form>
+  </div>
+</div>

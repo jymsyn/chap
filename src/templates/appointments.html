@@ -1,0 +1,142 @@
+<style media="screen">
+  .view {
+    padding-top: 25px;
+    margin-top: 55px;
+    min-height: 100vh;
+  }
+  .appCal{
+    position: relative;
+    top: 77px;
+  }
+  .dateSelection{
+    position: relative;
+    top: 5pc;
+  }
+  #viewAllbtn{
+    margin-top: 10px;
+    position: relative;
+  }
+  #viewAllbtnMobile{
+    position: relative;
+    top: 0;
+  }
+  #datePicker{
+    position: relative;
+    top: 8px;
+  }
+  .label{
+    font-size: 1em;
+    text-transform: uppercase;
+    color: teal;
+  }
+</style>
+
+<navbar></navbar>
+<div class="view">
+  <div class="ui container">
+    <h4>My Schedule</h4>
+  </div>
+  <div class="ui container">
+    <h1>Appointments</h1>
+    <div class="ui four column grid">
+      
+      <!-- Calendar Datepicker section -->
+      <div ng-show="{{!vm.isMobile}}" class="computer screen only four wide column" id="datePicker">
+        <div date-picker class="ui calendar animated fadeIn appCal" id="calDatePicker"></div>
+        <input style="display: none;" ng-model="vm.date" id="pickedDayVal" ng-model-options="{ updateOn: 'change' }"></input>
+        <div ng-click="vm.resetDate()" class="ui button dateSelection blue fluid" id="viewAllbtn" ng-model-options="{ updateOn: 'change' }">View All</div>
+      </div>
+      
+      <!-- Appointment section -->
+      <div ng-show="{{!vm.isMobile}}" class="computer screen only computer only twelve wide column">
+          <h2 style="font-size: 50px; letter-spacing: -2px; text-transform: uppercase;">{{vm.date || 'All appointments'}}</h2>
+          <div class="ui items segment animated fadeInUp"  ng-repeat="a in vm.appointments | orderBy:'date' | filter: vm.date">
+            <div class="item">
+              <div class="left aligned content">
+                <div class="header">{{a.customerFirstname}} {{a.customerLastname}}</div>
+                <div class="description">
+                  <label class="label">Date:</label><span>{{a.appointmentDate}}</span>
+                  <br>
+                  <label class="label">Time: </label>{{a.appointmentTime}}
+                  <br>
+                  <a class="ui teal image label">
+                    {{a.hairstyle.name}}
+                    <div class="detail">${{a.hairstyle.price}}</div>
+                  </a>
+                </div>
+              </div>
+              <div class="right aligned content">
+                <div appt-modal ng-click="vm.showModal(a)" class="ui right floated blue button appbtn">Manage Appointment</div>    
+              </div>
+            </div>
+            <a ng-show="a.appointmentDate == vm.today" class="ui teal right ribbon label">Today</a>
+          </div> 
+      </div>
+      
+      <!-- Mobile section -->
+      <div ng-show="{{vm.isMobile}}" class="mobile only tablet only computer only sixteen wide column">
+
+        <!-- Calendar section-->
+        <div class="ui calendar animated fadeIn" id="calDatePickerMobile"></div>
+        <input style="display: none;" ng-model="vm.date" id="pickedDayValMobile" ng-model-options="{ updateOn: 'change' }"></input>
+        
+        
+        <!-- Appointment section -->
+        <div class="appointmentHeader">
+          <h2 style="text-transform: uppercase;">{{vm.date || 'All appointments'}}</h2>
+          <div ng-click="vm.resetDate()" class="ui button dateSelection blue fluid" id="viewAllbtnMobile" ng-model-options="{ updateOn: 'change' }">View All</div>
+        </div>
+        
+        <!-- List of appointments -->
+        <div class="ui items segment animated fadeInUp"  ng-repeat="a in vm.appointments | orderBy:'appointmentDay' | filter: vm.date">
+          <div class="item">
+            <div class="left aligned content">
+              <div class="header">{{a.customerFirstname}} {{a.customerLastname}}</div>
+              <div class="description">
+                <label>Date:</label><span>{{a.appointmentDate}}</span>
+                <br>
+                <label>Time: {{a.appointmentTime}}</label>
+              </div>
+            </div>
+            <div class="right aligned content">
+              <div ng-click="vm.showModal()" class="ui right floated blue button">Manage Appointment</div>    
+            </div>
+            <a ng-show="a.appointmentDate == vm.today" class="ui teal right ribbon label">Today</a>
+            <a ng-show="a.status == 'cancelled'" class="ui teal right ribbon label">Today</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<button style="display: none;" type="button" id="hiddenBtn"></button>
+<!-- Modal -->
+<div class="ui small modal">
+  <i class="close icon"></i>
+  <div class="ui header">
+     <span style="color:teal">{{vm.modalAppt.appointmentDate}}</span> - {{vm.modalAppt.customerFirstname}} {{vm.modalAppt.customerLastname}}
+  </div>
+  <div class="content">
+    <div class="description">
+      <div class="ui header">Appointment Info</div>
+      <p><label class="label">Name:</label> {{vm.modalAppt.customerFirstname}} {{vm.modalAppt.customerLastname}}</p>
+      <p><label class="label">Date:</label> {{vm.modalAppt.appointmentDate}}</p>
+      <p><label class="label">Time:</label> {{vm.modalAppt.appointmentTime}}</p>
+      <p><label class="label">Phone:</label> {{vm.modalAppt.phone}}</p>
+      <div class="ui blue label">
+        <i class="alarm icon"></i>
+        <a ng-click="vm.sendReminder()" class="detail">Send reminder text</a>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div ng-click="vm.sendCancel()" class="ui red deny labeled icon button">
+      Cancel Appointment
+      <i class="remove icon"></i>
+    </div>
+  </div>
+</div>
+
+<footer></footer>
