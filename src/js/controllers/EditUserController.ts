@@ -27,7 +27,7 @@ namespace app.Controllers {
           this.user.location = results[0].geometry.location;
           cb();
         } else {
-          console.log("something wrong happened")
+          console.log("Could not find address, make sure you are using a valide address.")
         }
       });
     }

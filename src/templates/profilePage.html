@@ -6,9 +6,19 @@
       <!-- Use overlay if you want to use user background image. To use background image, set back-img directive equal to the url -->
       <!-- <div class="overlay"></div>  -->
       <div class="ui container center aligned zindex animated fadeIn">
-        <img class="object-fit_cover" ng-src="{{vm.profile.igurl}}">
+        <img class="object-fit_cover shadow" ng-src="{{vm.profile.igurl}}">
+        <div ng-show="vm.profile.isTakingWalkins" class="led-green status"></div>
         <div class="column"><h1 class="ui inverted">{{vm.profile.username}}</h1></div>
-        <div class="column"><h2>{{vm.profile.firstName}} {{vm.profile.lastName}}</h2></div> 
+        <div class="column"><h4>{{vm.profile.firstName}} {{vm.profile.lastName}}</h4></div> 
+        <a ng-href="https:instagram.com/{{vm.profile.socialMedia.instagram}}" class="ui blue image label">
+          <i class="instagram icon"></i>
+          <div class="detail">@{{vm.profile.socialMedia.instagram}}</div>
+        </a>
+        <br>
+        <a ng-href="https://snapchat.com/{{vm.profile.socialMedia.snapchat}}" class="ui yellow image label">
+          <i class="snapchat icon"></i>
+          <div class="detail">@{{vm.profile.socialMedia.snapchat}}</div>
+        </a>
         <!-- <div class="ui huge primary button">View Services<i class="right arrow icon"></i></div> -->
       </div>
     </div>
@@ -24,63 +34,65 @@
     <div class="ui tab segment" data-tab="second">About page</div>
     <div class="ui tab segment" data-tab="third">Services</div>
   </div> -->
-    
-  <div class="ui raised very padded text container segment animated fadeIn" id="aptTimeDate">
-    <h2 class="ui dividing header">Choose Appointment Date & Time</h2>
-    <div class="ui two column doubling stackable grid container">
-      <div class="column">
-        <label>Date</label>
-        <div date-picker={{vm.maxDate}} class="ui calendar" id="date">
-           <div class="ui input left icon">
-             <i class="calendar icon"></i>
-             <input type="text" placeholder="Date">
-             <input style="display:none" ng-model-options="{ updateOn: 'change' }" id="leDate" ng-model="vm.appointment.appointmentDate"></input>
-           </div>
-         </div>
-      </div>
-      
-      <div class="column">
-        <label>Time</label>
-        <div date-picker={{vm.maxDate} class="ui calendar" id="time">
-           <div class="ui input left icon">
-             <i class="time icon"></i>
-             <input ng-model="vm.appointment.appointmentTime" type="text" placeholder="Time">
-           </div>
-        </div>
-        <input style="display:none" ng-model-options="{ updateOn: 'change' }" id="leTime" ng-model="vm.appointment.appointmentTime"></input>
-      </div>
-    </div>
-    <div class="ui two column doubling stackable grid container">
-      <label>Select a service</label>
-      <select ng-options="h as h.name for h in vm.profile.hairstyles track by h._id" ng-model="vm.appointment.hairstyle" class="ui fluid dropdown">
-        <!-- <option ng-repeat="styles in vm.profile.hairstyles" value="{{styles._id}}">{{styles.name}} - ${{styles.price}}</option> -->
-      </select>
-    </div>
-  </div>
   
-  <div class="ui raised very padded text container segment animated fadeIn">
-    <h2 class="ui dividing header">Enter your information <a href="#"> or sign in</a></h2>
-    <div class="ui form">
-      <div class="two fields">
-        <div class="field">
-          <label>First name</label>
-          <input ng-model="vm.appointment.customerFirstname" type="text" placeholder="First Name">
+  <form name="apptForm" action="index.html" method="post">  
+    <div class="ui raised very padded text container segment animated fadeIn" id="aptTimeDate">
+      <h2 class="ui dividing header">Choose Appointment Date & Time</h2>
+      <div class="ui two column doubling stackable grid container">
+        <div class="column">
+          <label>Date</label>
+          <div date-picker={{vm.maxDate}} class="ui calendar" id="date">
+             <div class="ui input left icon">
+               <i class="calendar icon"></i>
+               <input required type="text" placeholder="Date">
+               <input style="display:none" ng-model-options="{ updateOn: 'change' }" id="leDate" ng-model="vm.appointment.appointmentDate"></input>
+             </div>
+           </div>
         </div>
-        <div class="field">
-          <label>Last name</label>
-          <input ng-model="vm.appointment.customerLastname" type="text" placeholder="Last Name">
+        
+        <div class="column">
+          <label>Time</label>
+          <div date-picker={{vm.maxDate} class="ui calendar" id="time">
+             <div class="ui input left icon">
+               <i class="time icon"></i>
+               <input required ng-model="vm.appointment.appointmentTime" type="text" placeholder="Time">
+             </div>
+          </div>
+          <input style="display:none" ng-model-options="{ updateOn: 'change' }" id="leTime" ng-model="vm.appointment.appointmentTime"></input>
         </div>
       </div>
-      <div class="two fields">
-        <div class="field">
-          <label>Phone Number</label>
-          <input ng-model="vm.appointment.phone" type="text" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_"/>
-        </div>
+      <div class="ui two column doubling stackable grid container">
+        <label>Select a service</label>
+        <select dropdown ng-options="h as h.name for h in vm.profile.hairstyles track by h._id" ng-model="vm.appointment.hairstyle" class="ui fluid dropdown">
+          <!-- <option ng-repeat="styles in vm.profile.hairstyles" value="{{styles._id}}">{{styles.name}} - ${{styles.price}}</option> -->
+        </select>
       </div>
-      <button ng-click="vm.submitAppt()" ng-show="!vm.loading" class="ui primary right floated button">Submit Appointment</button>
-      <button ng-show="vm.loading" class="ui primary loading right floated button">Loading</button>
     </div>
-  </div>
+    
+    <div class="ui raised very padded text container segment animated fadeIn">
+      <h2 class="ui dividing header">Enter your information</h2>
+      <div class="ui form">
+        <div class="two fields">
+          <div class="field">
+            <label>First name</label>
+            <input required ng-model="vm.appointment.customerFirstname" type="text" placeholder="First Name">
+          </div>
+          <div class="field">
+            <label>Last name</label>
+            <input ng-model="vm.appointment.customerLastname" type="text" placeholder="Last Name">
+          </div>
+        </div>
+        <div class="two fields">
+          <div class="field">
+            <label>Phone Number</label>
+            <input required ng-model="vm.appointment.phone" type="text" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_"/>
+          </div>
+        </div>
+        <button ng-disabled="apptForm.$invalid" ng-click="vm.submitAppt()" ng-show="!vm.loading" class="ui primary right floated button">Submit Appointment</button>
+        <button ng-show="vm.loading" class="ui primary loading right floated button">Loading</button>
+      </div>
+    </div>
+  </form>
   
   <div class="ui raised very padded text container segment">
     <h2 class="ui dividing header">Hairstyles</h2>

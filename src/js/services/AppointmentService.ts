@@ -6,6 +6,8 @@ namespace app.Services{
     public AppointmentResource;
 
     public saveAppt(appt){
+      // appt.status = 'Active';
+      console.log(appt);
       return this.AppointmentResource.save(appt).$promise;
     }
 

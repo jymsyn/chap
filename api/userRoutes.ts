@@ -53,4 +53,11 @@ router.put('/', auth, (req, res, next) => {
   })
 })
 
+//update barber's isTakingWalkins
+router.put('/status', auth, (req, res, next) => {
+  User.findOneAndUpdate({ _id: req['payload']._id}, req.body.isTakingWalkins, {new:true}, (err, results) => {
+    if (err)
+  })
+})
+
 export default router;

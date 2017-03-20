@@ -6,7 +6,7 @@
 </style>
 
 
-<div class="ui middle aligned center aligned grid">
+<div class="ui middle aligned center aligned grid animated fadeIn">
   <div class="column">
     <h2 class="ui violet header">
       <div class="content">
@@ -33,14 +33,25 @@
             <input ng-model="vm.userInfo.password" type="password" name="password" placeholder="Password">
           </div>
         </div>
-      <div class="ui horizontal section divider">Choose user account type</div>
+      <div class="ui horizontal section divider">Enter your professional background</div>
       <div class="field">
-        <label>Account Type</label>
-        <select ng-model="vm.userInfo.role" class="ui fluid dropdown">
+        <!-- <select ng-model="vm.userInfo.profession" class="ui fluid dropdown">
           <option value="client">Client</option>
           <option value="provider">Barber/Service Provider</option>
+        </select> -->
+        
+        <div class="ui sub header">Profession:</div>
+        <select dropdown ng-model="vm.userInfo.profession" name="skills" class="ui fluid dropdown" placeholder="Add your trade breh">
+          <option value="Barber">Barber</option>
+          <option value="Hairdresser">Hairdresser</option>
+          <option value="MUA">MUA</option>
+          <option value="Other">Other</option>
         </select>
       </div>
+      <div class="field">
+        <input ng-model="vm.userInfo.profession2" ng-show="vm.userInfo.profession == 'Other'" type="text" value="" placeholder="What is your professional background?">
+      </div>
+      
         <button ng-click="nc.showNav = true" class="ui fluid large violet submit button" type="submit">Sign Up</button>
       </div>
 

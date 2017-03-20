@@ -13,7 +13,8 @@ let auth = jwt({
 //POST: /api/v1/appointments
 //Saving appointment | first find if barber exists
 router.post('/', (req, res, next) =>{
-  console.log(`Accessed post api. Body: ${req.body.barber}`)
+  console.log(`Saving appointment to database ${req.body.barber}`);
+  console.log(`Searching for ${req.body.barber}`);
   User.findOne({ _id: req.body.barber })
   .exec((err, user)=>{
     console.log(`Found user: ${user}`)
@@ -26,7 +27,7 @@ router.post('/', (req, res, next) =>{
 
 //When user exists, post appointment
 router.post('/', (req, res, next) =>{
-  console.log(`entered appointment. Req.body: ${req.body}`)
+  console.log(`Saving appointment: ${req.body}`)
   let appointment = new Appointment(req.body);
   appointment.save((err, appt)=>{
     console.log(appt)

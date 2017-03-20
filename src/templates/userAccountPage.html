@@ -31,7 +31,7 @@
     <br>
     <div class="ui divider"></div>
     
-    <h2 class="ui center aligned header">Manage Account</h3>
+    <h2 class="ui center aligned header">{{vm.user.username}}'s' Account</h3>
     <form class="ui form">
       
       <!--User Account Information -->
@@ -209,6 +209,22 @@
           </div>
         </div>
       </div> -->
+      
+      <div class="ui segment animated fadeInUp">
+        <h4 class="ui dividing header">Social Media</h4>
+        <div class="ui container">
+          <div class="fields">
+            <div class="eight wide field">
+              <label>Instagram Username</label>
+              <input ng-model="vm.user.socialMedia.instagram" type="text" placeholder="Your ig username">
+            </div>
+            <div class="eight wide field">
+              <label>Snapchat Username</label>
+              <input ng-model="vm.user.socialMedia.snapchat" type="text" placeholder="Your snapchat username">
+            </div>
+          </div>
+        </div>
+      </div>
       
       <div class="ui button" ng-click="vm.updateProfile()">Update</div>
     </form>

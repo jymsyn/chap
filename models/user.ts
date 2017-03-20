@@ -28,10 +28,11 @@ let UserSchema = new mongoose.Schema({
   appointments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Appointment'}],
   appointmentDays: [{ type: mongoose.Schema.Types.ObjectId, ref: 'AppointmentDays'}],
   availabilityEndDate: Date,
-  role: {
-    enum: ['provider', 'client', 'admin'],
-    type: String
-    // required: true
+  profession: { type: String },
+  isTakingWalkins: {type: Boolean},
+  socialMedia: {
+    instagram: {type: String},
+    snapchat: {type: String}
   }
 })
 
