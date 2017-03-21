@@ -6,8 +6,6 @@ namespace app.Services{
     public AppointmentResource;
 
     public saveAppt(appt){
-      // appt.status = 'Active';
-      console.log(appt);
       return this.AppointmentResource.save(appt).$promise;
     }
 
@@ -27,6 +25,30 @@ namespace app.Services{
         q.reject(err);
       })
       return this.AppointmentResource.update(status).$promise;
+    }
+    
+    public convertDate(appointment){
+      let convertedDate = appointment.appointmentDate.split(' ').splice(0,4); 
+      appointment.appointmentDate = convertedDate.join(' ');
+      
+      let aDate = new Date(appointment.appointmentDate)
+      appointment.date = moment(aDate).format("YYYY-M-D");
+      
+      let aTime = appointment.appointmentTime.split(' ')[0]
+      let hour = aTime.split(':')[0];
+      let minute =  aTime.split(':')[1];
+      if (hour > 12) {
+        if (hour - 12 > 0) {
+          aTime = `${hour-12}:${minute} pm`
+        } 
+      } else if (hour == 12) {
+          aTime = `${hour}:${minute} pm`
+      } else {
+        aTime = `${hour}:${minute} am`
+      }
+      appointment.appointmentTime = aTime;
+      console.log(appointment)
+      return appointment;
     }
 
     constructor(

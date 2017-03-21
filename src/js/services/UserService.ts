@@ -53,18 +53,6 @@ namespace app.Services {
       return q.promise;
     };
     
-    public updateUser(user){
-      if(user.igurl){
-        this.convertIGUrl(user.igurl).then((res) => {
-          let User = user;
-          User.igurl = res;
-          return this.updateUserInfo(User).$promise;
-        });
-      } else {
-        console.log(`something bad happened`);
-      } 
-    }
-    
     public updateUserInfo(user){
       let q = this.$q.defer();
       this.$http.put('/api/v1/users', user).then((res)=>{

@@ -7,7 +7,6 @@ namespace app.Controllers{
     public markers;
     public googleMapsUrl;
     public loading = false;
-    
     public appointment={
       barber: String,
       appointmentDay: String,
@@ -18,27 +17,8 @@ namespace app.Controllers{
     
     public submitAppt(){
       this.loading= true;
-      let convertedDate = this.appointment.appointmentDate.split(' ').splice(0,4); 
-      this.appointment.appointmentDate = convertedDate.join(' ');
-      
-      let aDate = new Date(this.appointment.appointmentDate)
-      this.appointment.date = moment(aDate).format("YYYY-M-D");
-      
-      let aTime = this.appointment.appointmentTime.split(' ')[0]
-      let hour = aTime.split(':')[0];
-      let minute =  aTime.split(':')[1];
-      if (hour > 12) {
-        if (hour - 12 > 0) {
-          aTime = `${hour-12}:${minute} pm`
-        } 
-      } else if (hour == 12) {
-          aTime = `${hour}:${minute} pm`
-      } else {
-        aTime = `${hour}:${minute} am`
-      }
-      this.appointment.appointmentTime = aTime;
-      console.log(this.appointment);
-      this.AppointmentService.saveAppt(this.appointment).then((res)=>{
+      let appointment = this.AppointmentService.convertDate(this.appointment);
+      this.AppointmentService.saveAppt(appointment).then((res)=>{
         console.log(res);
         this.$location.path('/reservationcomplete');
       });
