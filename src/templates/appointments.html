@@ -89,6 +89,7 @@
         
         <!-- List of appointments -->
         <div class="ui items segment animated fadeInUp"  ng-repeat="a in vm.appointments | orderBy:'appointmentDay' | filter: vm.date">
+          <div class="item" ng-hide="!vm.appointments.length">No appointments</div>
           <div class="item">
             <div class="left aligned content">
               <div class="header">{{a.customerFirstname}} {{a.customerLastname}}</div>

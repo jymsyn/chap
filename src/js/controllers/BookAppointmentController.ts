@@ -4,6 +4,7 @@ namespace app.Controllers{
     public appointment;
     
     public submitAppt(){
+      this.appointment.status = "Active"
       this.AppointmentService.saveAppt(this.appointment).then((res)=>{
         this.$location.path('/appointments');
       });

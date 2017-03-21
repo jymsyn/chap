@@ -39,6 +39,7 @@ namespace app.Controllers{
       this.appointment.appointmentTime = aTime;
       console.log(this.appointment);
       this.AppointmentService.saveAppt(this.appointment).then((res)=>{
+        console.log(res);
         this.$location.path('/reservationcomplete');
       });
     };

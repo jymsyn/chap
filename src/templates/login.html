@@ -1,19 +1,19 @@
 <style type="text/css">
-  .loginform {
-    max-width: 450px;
-    margin-top: 15%
+  .login_container{
+    position: relative;
+    max-width: 400px;
+    margin: auto;
+    transform: translateY(100%);
+  }
+  .login{
+    margin: 10px;
   }
 </style>
 
-<div class="ui middle aligned center aligned grid animated fadeIn">
-  <div class="column loginform">
-    <h2 class="ui teal header">
-      <div class="content">
-        Log-in to your account
-      </div>
-    </h2>
+<div class="ui animated fadeIn login_container">
+  <div class="column login">
+    <h2 class="ui teal header">Login to your account</h2>
     <form class="ui large form" ng-submit="vm.login()">
-      <div class="ui segment">
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
@@ -26,11 +26,10 @@
             <input ng-model="vm.userInfo.password" type="password" name="password" placeholder="Password">
           </div>
         </div>
-        <button ng-click="nc.showNav = true" class="ui fluid large teal submit button" type="submit">Login</button>
-      </div>
-
+        
+        <button ng-disabled="registerForm.$invalid" type="submit" ng-show="!vm.loading" class="ui fluid large teal submit button">Login</button>
+        <button ng-show="vm.loading" class="ui fluid large loading teal submit button">Loading</button>
     </form>
-
     <div class="ui message">
       New to us? <a ui-sref="Register">Sign Up</a>
     </div>

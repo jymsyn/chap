@@ -17,7 +17,7 @@ router.post('/register', (req, res, next) => {
   user.role = req.body.role;
   user.setPassword(req.body.password);
   user.save((err, user) => {
-    if (err) return next('err');
+    if (err) return next(err);
     res.send({token: user.generateJWT()})
   })
 })

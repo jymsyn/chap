@@ -17,9 +17,9 @@
   display: none;
 }
 .masthead.segment {
-  min-height: 100vh;
+  height: 100vh;
   background-image: url('../images/home-hero.jpg') !important;
-  background-size: 100% !important;
+  background-size: cover !important;
   padding: 1em 0em;
 }
 .masthead .logo.item img {

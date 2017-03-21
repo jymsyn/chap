@@ -30,7 +30,7 @@ router.post('/', (req, res, next) =>{
   console.log(`Saving appointment: ${req.body}`)
   let appointment = new Appointment(req.body);
   appointment.save((err, appt)=>{
-    console.log(appt)
+    console.log('Successfully saved appointment', appt)
     if (err) return next(err);
     if (!appt) return next({ message: 'Error saving appointment.'});
     req['user'].appointments.push(appt._id);
