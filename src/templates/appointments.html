@@ -53,15 +53,21 @@
           <div class="ui items segment animated fadeInUp"  ng-repeat="a in vm.appointments | orderBy:'date' | filter: vm.date">
             <div class="item">
               <div class="left aligned content">
+                <a class="ui teal image label">
+                  {{a.appointmentDate}}
+                  <div class="detail">{{a.appointmentTime}}</div>
+                </a>
                 <div class="header">{{a.customerFirstname}} {{a.customerLastname}}</div>
                 <div class="description">
-                  <label class="label">Date:</label><span>{{a.appointmentDate}}</span>
+                  <label class="label">Booked Style:</label>
+                  <span>{{a.hairstyle.name}}</span>
                   <br>
-                  <label class="label">Time: </label>{{a.appointmentTime}}
+                  <label class="label">Price: </label>
+                  <span>${{a.hairstyle.price}}</span> 
                   <br>
-                  <a class="ui teal image label">
-                    {{a.hairstyle.name}}
-                    <div class="detail">${{a.hairstyle.price}}</div>
+                  <a class="item">
+                    <div ng-show="a.status == 'active'" class="ui red horizontal label">Active</div>
+                    <div ng-show="a.status == 'cancelled'" class="ui red horizontal label">Cancelled</div>
                   </a>
                 </div>
               </div>

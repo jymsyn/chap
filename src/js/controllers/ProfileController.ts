@@ -18,11 +18,14 @@ namespace app.Controllers{
     public submitAppt(){
       this.loading= true;
       let appointment = this.AppointmentService.convertDate(this.appointment);
-      this.AppointmentService.saveAppt(appointment).then((res)=>{
+      appointment.status = 'active';
+      let appt = appointment; //forcing status property to append to appointment object
+      this.AppointmentService.saveAppt(appt).then((res)=>{
         console.log(res);
         this.$location.path('/reservationcomplete');
       });
     };
+    
 
     constructor(
       private AppointmentService: app.Services.AppointmentService,

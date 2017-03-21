@@ -15,10 +15,6 @@ namespace app.Controllers{
       this.date = '';
     }
     
-    public test(){
-      let aDate = new Date(this.modalAppt.appointmentTime)
-      console.log(this.modalAppt.appointmentTime)
-    }
     public showModal(appt){
       console.log(`This is the selected appointment id: ${appt.appointmentDate}`)
       this.modalAppt = appt;
