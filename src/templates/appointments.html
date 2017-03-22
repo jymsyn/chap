@@ -50,25 +50,28 @@
       <!-- Appointment section -->
       <div ng-show="{{!vm.isMobile}}" class="computer screen only computer only twelve wide column">
           <h2 style="font-size: 50px; letter-spacing: -2px; text-transform: uppercase;">{{vm.date || 'All appointments'}}</h2>
-          <div class="ui items segment animated fadeInUp"  ng-repeat="a in vm.appointments | orderBy:'date' | filter: vm.date">
+          <div class="ui items segment animated fadeInUp"  ng-repeat="a in appts =( vm.appointments | orderBy:'date' | filter: vm.date)">
             <div class="item">
               <div class="left aligned content">
                 <a class="ui teal image label">
                   {{a.appointmentDate}}
                   <div class="detail">{{a.appointmentTime}}</div>
                 </a>
-                <div class="header">{{a.customerFirstname}} {{a.customerLastname}}</div>
+                <a class="item">
+                  <div ng-show="a.status == 'active'" class="ui green horizontal label">Active</div>
+                  <div ng-show="a.status == 'cancelled'" class="ui red horizontal label">Cancelled</div>
+                </a>
+                <div class="header"></div>
                 <div class="description">
+                  <label class="label">Customer:</label>
+                  <span>{{a.customerFirstname}} {{a.customerLastname}}</span>
+                  <br>
                   <label class="label">Booked Style:</label>
                   <span>{{a.hairstyle.name}}</span>
                   <br>
                   <label class="label">Price: </label>
                   <span>${{a.hairstyle.price}}</span> 
                   <br>
-                  <a class="item">
-                    <div ng-show="a.status == 'active'" class="ui green horizontal label">Active</div>
-                    <div ng-show="a.status == 'cancelled'" class="ui red horizontal label">Cancelled</div>
-                  </a>
                 </div>
               </div>
               <div class="right aligned content">
@@ -76,6 +79,12 @@
               </div>
             </div>
             <a ng-show="a.appointmentDate == vm.today" class="ui teal right ribbon label">Today</a>
+          </div>
+          <div ng-show="!appts.length" class="ui items segment animated fadeInUp">
+            <div class="item">
+              <h3>No appointments to show</h3>
+              
+            </div>
           </div> 
       </div>
       
