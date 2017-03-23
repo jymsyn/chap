@@ -1,0 +1,24 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var passport = require("Passport");
+var mongoose = require("mongoose");
+var LocalStrategy = require('passport-local').Strategy;
+var User = mongoose.model('User');
+passport.serializeUser(function (user, done) {
+    done(null, user);
+});
+passport.deserializeUser(function (obj, done) {
+    done(null, obj);
+});
+passport.use(new LocalStrategy(function (username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+        if (err)
+            return done(err);
+        if (!user)
+            return done(null, false, { data: 'Cannot find that username in our system.' });
+        if (!user.validatePassword(password))
+            return done(null, false, { data: 'Password does not match.' });
+        return done(null, user);
+    });
+}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGFzc3BvcnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJwYXNzcG9ydC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLG1DQUFzQztBQUN0QyxtQ0FBc0M7QUFDdEMsSUFBSSxhQUFhLEdBQUcsT0FBTyxDQUFDLGdCQUFnQixDQUFDLENBQUMsUUFBUSxDQUFDO0FBQ3ZELElBQUksSUFBSSxHQUFHLFFBQVEsQ0FBQyxLQUFLLENBQUMsTUFBTSxDQUFDLENBQUM7QUFFbEMsUUFBUSxDQUFDLGFBQWEsQ0FBQyxVQUFTLElBQUksRUFBRSxJQUFJO0lBQ3hDLElBQUksQ0FBQyxJQUFJLEVBQUUsSUFBSSxDQUFDLENBQUM7QUFDbkIsQ0FBQyxDQUFDLENBQUM7QUFFSCxRQUFRLENBQUMsZUFBZSxDQUFDLFVBQVMsR0FBRyxFQUFFLElBQUk7SUFDekMsSUFBSSxDQUFDLElBQUksRUFBRSxHQUFHLENBQUMsQ0FBQztBQUNsQixDQUFDLENBQUMsQ0FBQztBQUVILFFBQVEsQ0FBQyxHQUFHLENBQUMsSUFBSSxhQUFhLENBQUMsVUFBUyxRQUFRLEVBQUUsUUFBUSxFQUFFLElBQUk7SUFDNUQsSUFBSSxDQUFDLE9BQU8sQ0FBQyxFQUFFLFFBQVEsRUFBRSxRQUFRLEVBQUUsRUFBRSxVQUFTLEdBQUcsRUFBRSxJQUFJO1FBQ3JELEVBQUUsQ0FBQSxDQUFDLEdBQUcsQ0FBQztZQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsR0FBRyxDQUFDLENBQUM7UUFDekIsRUFBRSxDQUFBLENBQUMsQ0FBQyxJQUFJLENBQUM7WUFBQyxNQUFNLENBQUMsSUFBSSxDQUFDLElBQUksRUFBRSxLQUFLLEVBQUUsRUFBRSxJQUFJLEVBQUUsMENBQTBDLEVBQUUsQ0FBQyxDQUFDO1FBQ3pGLEVBQUUsQ0FBQSxDQUFDLENBQUMsSUFBSSxDQUFDLGdCQUFnQixDQUFDLFFBQVEsQ0FBQyxDQUFDO1lBQUMsTUFBTSxDQUFDLElBQUksQ0FBQyxJQUFJLEVBQUUsS0FBSyxFQUFFLEVBQUUsSUFBSSxFQUFFLDBCQUEwQixFQUFFLENBQUMsQ0FBQztRQUNwRyxNQUFNLENBQUMsSUFBSSxDQUFDLElBQUksRUFBRSxJQUFJLENBQUMsQ0FBQztJQUMxQixDQUFDLENBQUMsQ0FBQztBQUNQLENBQUMsQ0FBQyxDQUFDLENBQUMifQ==

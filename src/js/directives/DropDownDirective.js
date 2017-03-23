@@ -1,0 +1,7 @@
+angular.module('app').directive('dropdown', function () { return ({
+    restrict: 'A',
+    link: function (scope, elem, attrs) {
+        $('.ui.dropdown').dropdown();
+    }
+}); });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRHJvcERvd25EaXJlY3RpdmUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJEcm9wRG93bkRpcmVjdGl2ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLENBQUMsTUFBTSxDQUFDLEtBQUssQ0FBQyxDQUFDLFNBQVMsQ0FBQyxVQUFVLEVBQUUsY0FBTSxPQUFBLENBQUM7SUFDakQsUUFBUSxFQUFFLEdBQUc7SUFDYixJQUFJLEVBQUUsVUFBVSxLQUFLLEVBQUUsSUFBSSxFQUFFLEtBQUs7UUFDaEMsQ0FBQyxDQUFDLGNBQWMsQ0FBQyxDQUFDLFFBQVEsRUFBRSxDQUFDO0lBQy9CLENBQUM7Q0FDRixDQUFDLEVBTGdELENBS2hELENBQUMsQ0FBQyJ9
