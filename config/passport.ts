@@ -1,4 +1,5 @@
-import passport = require('Passport');
+"use strict"
+var passport = require('Passport');
 import mongoose = require('mongoose');
 let LocalStrategy = require('passport-local').Strategy;
 let User = mongoose.model('User');
