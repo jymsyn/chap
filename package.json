@@ -2,6 +2,9 @@
   "name": "chap",
   "version": "1.0.0",
   "description": "Angular 1.5 ver of CHAP",
+  "engines": {
+    "node": "6.8.0"
+  },
   "scripts": {
     "start": "node ./bin/www",
     "devStart": "nodemon ./bin/www"
@@ -10,17 +13,17 @@
   "dependencies": {
     "@types/express-jwt": "0.0.34",
     "@types/passport": "^0.3.3",
-    "body-parser": "^1.16.1",
-    "cookie-parser": "^1.4.1",
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
     "dotenv": "^2.0.0",
     "ejs": "^2.5.5",
-    "express": "^4.14.1",
+    "express": "^4.15.2",
     "express-jwt": "^5.1.0",
     "get-instagram-photo": "0.0.1",
     "google-maps": "^3.2.1",
     "jsonwebtoken": "^7.2.1",
-    "mongoose": "^4.8.2",
-    "morgan": "^1.7.0",
+    "mongoose": "^4.9.1",
+    "morgan": "^1.8.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "serve-favicon": "^2.3.0",
