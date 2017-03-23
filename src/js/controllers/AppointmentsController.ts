@@ -9,7 +9,11 @@ namespace app.Controllers{
     public isMobile;
     public modalAppt;
     public today;
+    public user={
+      isTakingWalkins: Boolean
+    };
     public apptArr=[];
+    
     
     public resetDate(){
       this.date = '';
@@ -46,6 +50,16 @@ namespace app.Controllers{
       });
     }
     
+    public toggleWalkin(){
+      let user = this.user;
+      console.log(user.isTakingWalkins)
+      user.isTakingWalkins = !this.user.isTakingWalkins;
+      console.log(user);
+      this.UserService.setWalkin(user).then((res) => {
+        console.log(res);
+      })
+    }
+    
     constructor(
       private AppointmentService: app.Services.AppointmentService,
       private UserService: app.Services.UserService,
@@ -54,7 +68,10 @@ namespace app.Controllers{
       AppointmentService.getAllBarberAppointments().then((res) => {
         this.appointments = res;
       });
-      
+      UserService.getUser(UserService.status.username).then((res) => {
+        this.user = res.data;
+        console.log(this.user)
+      });
       this.isMobile = window.innerWidth <= 990
       let newDate = new Date().toDateString();
       let todayStr = newDate.split(' ').splice(0,4);

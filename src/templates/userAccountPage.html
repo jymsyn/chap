@@ -60,8 +60,15 @@
             <input type="text" ng-model="vm.user.phone" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_"/>
           </div>
         </div>
+        
+        <div class="field">
+          <label>Bio</label>
+          <textarea rows="4" cols="50" type="text" ng-model="vm.user.bio"></textarea>
+        </div>
+        
       </div>
       
+
       <br>
       
       <!-- Shop Information form -->    
@@ -226,7 +233,8 @@
         </div>
       </div>
       
-      <div class="ui button" ng-click="vm.updateProfile()">Update</div>
+      <button ng-click="vm.updateProfile()" ng-show="!vm.loading" class="ui primary right floated button">Update</button>
+      <button ng-show="vm.loading" class="ui primary loading right floated button">Loading</button>
     </form>
 
   </div>

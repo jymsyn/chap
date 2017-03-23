@@ -14,7 +14,7 @@ namespace app.Controllers {
           this.UserService.updateUserInfo(this.user).then((res)=>{
             console.log(res)
             this.alreadyUploaded = true;
-            this.$state.go('UserAccount');
+            alert("Update successful")
           })
         });
       });

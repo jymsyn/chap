@@ -1,152 +1,225 @@
 <link rel="stylesheet" href="/css/profilepage.css"/>
+<style media="screen">
+  .columnw{
+    box-shadow: 14px 13px 5px rgba(34,36,38,0.52);
+  }
+</style>
 <navbar></navbar>
 <div class="view_profilepage">
   <div class="ui pphero">
-    <div back-img class="ui inverted vertical masthead center aligned segment hero">
+    <div back-img class="ui inverted vertical masthead segment hero">
       <!-- Use overlay if you want to use user background image. To use background image, set back-img directive equal to the url -->
       <!-- <div class="overlay"></div>  -->
-      <div class="ui container center aligned zindex animated fadeIn">
-        <img class="object-fit_cover" ng-src="{{vm.profile.igurl || './images/defaultprofilepic.jpg'}}">
-        <div class="column"><h1 class="ui inverted">{{vm.profile.username}}</h1></div>
-        <div class="column"><h2>{{vm.profile.firstName}} {{vm.profile.lastName}}</h2></div> 
-        <!-- <div class="ui huge primary button">View Services<i class="right arrow icon"></i></div> -->
+      
+      <div class="ui raised very padded text container left aligned zindex animated fadeIn">
+        <div class="ui two column centered grid">
+          <div class="column">
+            <div class="column">
+              <span class="ui inverted pp-title">{{vm.profile.firstName}} {{vm.profile.lastName}}</span>
+              <a ng-show="vm.profile.isTakingWalkins" class="ui green tag label">Taking walk-ins right now!</a>
+            </div>
+            <p class="pp-bio">{{vm.profile.bio}}</p>
+            <div class="column"><span class="pp-label">{{vm.profile.profession}}</span> @ <a href="#">{{vm.profile.storeName}}</a></div> 
+            <div class="extra content">
+
+            </div>
+            <div class="extra content">
+              <a class="ui inverted standard button">
+                <i class="instagram icon"></i>
+                {{vm.profile.socialMedia.snapchat}}
+              </a>
+              <a class="ui inverted standard button">
+                <i class="snapchat ghost icon"></i>
+                {{vm.profile.socialMedia.snapchat}}
+              </a>
+            </div>
+          </div>
+          <div class="right aligned column">
+            <img class="object-fit_cover" ng-src="{{vm.profile.igurl || './images/defaultprofilepic.jpg'}}">
+          </div>
+        </div>
+      
+        
       </div>
+      
+      <!-- <div class="ui card">
+        <div class="image">
+          <img  ng-src="{{vm.profile.igurl || './images/defaultprofilepic.jpg'}}">
+        </div>
+        <div class="content">
+          <a class="header">{{vm.profile.username}}</a>
+          <div class="meta">
+            <span class="date">{{vm.profile.address}}</span>
+          </div>
+          <div class="description">
+            {{vm.profile.profession}}
+          </div>
+        </div>
+        <div class="extra content">
+          <a>
+            <i class="snapchat ghost icon"></i>
+            {{vm.profile.socialMedia.snapchat}}
+          </a>
+        </div>
+      </div> -->
     </div>
   </div> 
   
-  <!-- <div tab-menu class="ui container">
+  <div tab-menu class="ui very padded text container">
     <div class="ui top pointing secondary data menu">
       <a class="active item" data-tab="first">Book</a>
       <a class="item" data-tab="second">About</a>
       <a class="item" data-tab="third">Services</a>
     </div>
-    <div class="ui active tab segment" data-tab="first">Book Appointment</div>
-    <div class="ui tab segment" data-tab="second">About page</div>
-    <div class="ui tab segment" data-tab="third">Services</div>
-  </div> -->
-    
-  <form name="apptForm">
-  <div class="ui raised very padded text container segment animated fadeIn" id="aptTimeDate">
-    <h2 class="ui dividing header">Choose Appointment Date & Time</h2>
-    <div class="ui two column doubling stackable grid container">
-      <div class="column">
-        <label>Date</label>
-        <div date-picker={{vm.maxDate}} class="ui calendar" id="date">
-           <div class="ui input left icon">
-             <i class="calendar icon"></i>
-             <input type="text" placeholder="Date">
-             <input style="display:none" ng-model-options="{ updateOn: 'change' }" id="leDate" ng-model="vm.appointment.appointmentDate"></input>
-           </div>
-         </div>
+    <div class="ui active tab stackable grid container" data-tab="first">
+      <div class="sixteen wide column">
+        <form name="apptForm">
+          <div class="ui raised very padded text container segment animated fadeIn" id="aptTimeDate">
+            <h4 class="ui dividing header">Choose Appointment Date & Time</h4>
+            <div class="ui two column doubling stackable grid container">
+              <div class="column">
+                <label>Date</label>
+                <div date-picker={{vm.maxDate}} class="ui calendar" id="date">
+                   <div class="ui input left icon">
+                     <i class="calendar icon"></i>
+                     <input type="text" placeholder="Date">
+                     <input style="display:none" ng-model-options="{ updateOn: 'change' }" id="leDate" ng-model="vm.appointment.appointmentDate"></input>
+                   </div>
+                 </div>
+              </div>
+              
+              <div class="column">
+                <label>Time</label>
+                <div date-picker={{vm.maxDate} class="ui calendar" id="time">
+                   <div class="ui input left icon">
+                     <i class="time icon"></i>
+                     <input ng-model="vm.appointment.appointmentTime" type="text" placeholder="Time">
+                   </div>
+                </div>
+                <input style="display:none" ng-model-options="{ updateOn: 'change' }" id="leTime" ng-model="vm.appointment.appointmentTime"></input>
+              </div>
+            </div>
+            <div class="ui two column doubling stackable grid container">
+              <label>Select a service</label>
+              <select dropdown ng-options="h as h.name for h in vm.profile.hairstyles track by h._id" ng-model="vm.appointment.hairstyle" class="ui fluid dropdown">
+                <!-- <option ng-repeat="styles in vm.profile.hairstyles" value="{{styles._id}}">{{styles.name}} - ${{styles.price}}</option> -->
+              </select>
+            </div>
+          </div>
+        </form>
       </div>
-      
-      <div class="column">
-        <label>Time</label>
-        <div date-picker={{vm.maxDate} class="ui calendar" id="time">
-           <div class="ui input left icon">
-             <i class="time icon"></i>
-             <input ng-model="vm.appointment.appointmentTime" type="text" placeholder="Time">
-           </div>
-        </div>
-        <input style="display:none" ng-model-options="{ updateOn: 'change' }" id="leTime" ng-model="vm.appointment.appointmentTime"></input>
-      </div>
-    </div>
-    <div class="ui two column doubling stackable grid container">
-      <label>Select a service</label>
-      <select dropdown ng-options="h as h.name for h in vm.profile.hairstyles track by h._id" ng-model="vm.appointment.hairstyle" class="ui fluid dropdown">
-        <!-- <option ng-repeat="styles in vm.profile.hairstyles" value="{{styles._id}}">{{styles.name}} - ${{styles.price}}</option> -->
-      </select>
-    </div>
-  </div>
-  
-  <div class="ui raised very padded text container segment animated fadeIn">
-    <h2 class="ui dividing header">Enter your information <a href="#"> or sign in</a></h2>
-    <div class="ui form">
-      <div class="two fields">
-        <div class="field">
-          <label>First name</label>
-          <input ng-model="vm.appointment.customerFirstname" type="text" placeholder="First Name">
-        </div>
-        <div class="field">
-          <label>Last name</label>
-          <input ng-model="vm.appointment.customerLastname" type="text" placeholder="Last Name">
-        </div>
-      </div>
-      <div class="two fields">
-        <div class="field">
-          <label>Phone Number</label>
-          <input required ng-model="vm.appointment.phone" type="text" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_"/>
-        </div>
-      </div>
-      <button ng-disabled="apptForm.$invalid" ng-click="vm.submitAppt()" ng-show="!vm.loading" class="ui primary right floated button">Submit Appointment</button>
-      <button ng-show="vm.loading" class="ui primary loading right floated button">Loading</button>
-    </div>
-  </div>
-    
-  </form>
-  <div class="ui raised very padded text container segment">
-    <h2 class="ui dividing header">Hairstyles</h2>
-    <div class="ui cards">
-      <div class="card" ng-repeat="hair in vm.profile.hairstyles">
-        <div class="image">
-          <img ng-src="{{hair.igimg}}">
-        </div>
-        <div class="content">
-          <div class="header">{{hair.name}}</div>
-          <div class="description">
-            {{hair.description}}
+      <div class="sixteen wide column">
+          <div class="ui raised very padded text container segment animated fadeIn">
+            <h4 class="ui dividing header">Enter your information</h4>
+            <div class="ui form">
+              <div class="two fields">
+                <div class="field">
+                  <label>First name</label>
+                  <input ng-model="vm.appointment.customerFirstname" type="text" placeholder="First Name">
+                </div>
+                <div class="field">
+                  <label>Last name</label>
+                  <input ng-model="vm.appointment.customerLastname" type="text" placeholder="Last Name">
+                </div>
+              </div>
+              <div class="two fields">
+                <div class="field">
+                  <label>Phone Number</label>
+                  <input required ng-model="vm.appointment.phone" type="text" ui-mask="(999) 999-9999"  ui-mask-placeholder ui-mask-placeholder-char="_"/>
+                </div>
+              </div>
+              <button ng-disabled="apptForm.$invalid" ng-click="vm.submitAppt()" ng-show="!vm.loading" class="ui primary right floated button">Submit Appointment</button>
+              <button ng-show="vm.loading" class="ui primary loading right floated button">Loading</button>
+            </div>
           </div>
         </div>
-        <!-- <div class="ui bottom attached button">
-          <i class="add icon"></i>
-          Book this style
-        </div> -->
+    </div>
+    <div class="ui tab stackable grid container" data-tab="second">
+      <div class="sixteen wide column">
+        <div class="ui raised very padded text container segment">
+          <h4 class="ui dividing header">Barbershop</h4>
+          <div class="ui list">
+            <div class="item">
+              <i class="users icon"></i>
+              <div class="content">
+                {{vm.profile.storeName}}
+              </div>
+            </div>
+            <div class="item">
+              <i class="marker icon"></i>
+              <div class="content">
+                {{vm.profile.address}}
+              </div>
+            </div>
+            <div class="item">
+              <i class="mail icon"></i>
+              <div class="content">
+                <a ng-href="'mailto:'+ {{vm.profile.email}}">{{vm.profile.email}}</a>
+              </div>
+            </div>
+            <div class="item">
+              <i class="linkify icon"></i>
+              <div class="content">
+                <a href="#">{{vm.profile.website}}</a>
+              </div>
+            </div>
+          </div>
+          
+          <!--Google Maps-->
+           <ng-map center='{{position}}' zoom="16">
+             <marker position="{{position}}" 
+             sicon="{
+              url:'../images/hairdresser.svg',
+              scaledSize:[25,25],
+              origin: [10,10],
+              anchor: [50,50]
+            }" title="Hello World!"></marker>
+           </ng-map>
+        </div>
+      </div>
+    </div>
+    <div class="ui tab stackable grid container" data-tab="third">
+      <div class="sixteen wide column">
+        <div class="ui raised very padded text container segment">
+          <h4 class="ui dividing header">Hairstyles</h4>
+          <div class="ui cards">
+            <div class="card" ng-repeat="hair in vm.profile.hairstyles">
+              <div class="image">
+                <img ng-src="{{hair.igimg}}">
+              </div>
+              <div class="content">
+                <div class="header">{{hair.name}}</div>
+                <div class="description">
+                  {{hair.description}}
+                </div>
+              </div>
+              <!-- <div class="ui bottom attached button">
+                <i class="add icon"></i>
+                Book this style
+              </div> -->
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  
-  <div class="ui raised very padded text container segment">
-    <h2 class="ui dividing header">Barbershop</h2>
-    <div class="ui list">
-      <div class="item">
-        <i class="users icon"></i>
-        <div class="content">
-          {{vm.profile.storeName}}
-        </div>
-      </div>
-      <div class="item">
-        <i class="marker icon"></i>
-        <div class="content">
-          {{vm.profile.address}}
-        </div>
-      </div>
-      <div class="item">
-        <i class="mail icon"></i>
-        <div class="content">
-          <a ng-href="'mailto:'+ {{vm.profile.email}}">{{vm.profile.email}}</a>
-        </div>
-      </div>
-      <div class="item">
-        <i class="linkify icon"></i>
-        <div class="content">
-          <a href="#">{{vm.profile.website}}</a>
-        </div>
-      </div>
-    </div>
     
-    <!--Google Maps-->
-  
-     <ng-map center='{{position}}' zoom="16">
-       <marker position="{{position}}" 
-       sicon="{
-        url:'../images/hairdresser.svg',
-        scaledSize:[25,25],
-        origin: [10,10],
-        anchor: [50,50]
-      }" title="Hello World!"></marker>
-     </ng-map>
+  <!-- Profile page Body -->
+  <div class="ui three column stackable grid container">
+    
+    
     
   </div>
+    
+  
+  
+  
+  
+    
+  
+  
+  
+  
 </div>
 
 <footer></footer>

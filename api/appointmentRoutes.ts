@@ -52,6 +52,7 @@ router.get('/', auth, (req,res, next) => {
 
 router.put('/', auth, (req, res, next) => {
   Appointment.findOneAndUpdate({ _id: req.body._id }, req.body, {new: true}, (err, result) => {
+    console.log(result);
     if (err) return next(err);
     if (!result) return next({message: 'Could not find and update the appointment status.'});
     res.send(result)

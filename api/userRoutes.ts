@@ -14,7 +14,7 @@ router.post('/register', (req, res, next) => {
   let user = new User();
   user.username = req.body.username;
   user.email = req.body.email;
-  user.role = req.body.role;
+  user.profession = req.body.profession;
   user.setPassword(req.body.password);
   user.save((err, user) => {
     if (err) return next(err);
@@ -55,8 +55,10 @@ router.put('/', auth, (req, res, next) => {
 
 //update barber's isTakingWalkins
 router.put('/status', auth, (req, res, next) => {
-  User.findOneAndUpdate({ _id: req['payload']._id}, req.body.isTakingWalkins, {new:true}, (err, results) => {
-    if (err)
+  User.findOneAndUpdate({ _id: req['payload']._id}, req.body, {new:true}, (err, results) => {
+    if (err) return next(err);
+    if(!results) return next({message: 'Error trying to set walkin status'});
+    res.send(results)
   })
 })
 

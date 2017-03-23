@@ -15,6 +15,9 @@ namespace app.Controllers {
         this.userInfo.profession = this.userInfo.profession2;
       };
       
+      let user = this.userInfo
+      this.userInfo.isTakingWalkins = false;
+      console.log(this.userInfo)
       this.UserService.register(this.userInfo).then((res)=>{
         this.$window.localStorage.setItem('token', res.token);
         this.UserService.setUser();

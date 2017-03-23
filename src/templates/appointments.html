@@ -42,7 +42,13 @@
       
       <!-- Calendar Datepicker section -->
       <div ng-show="{{!vm.isMobile}}" class="computer screen only four wide column" id="datePicker">
-        <div date-picker class="ui calendar animated fadeIn appCal" id="calDatePicker"></div>
+        <div class="ui inverted segment">
+          <button ng-click="vm.toggleWalkin()" ng-show="vm.user.isTakingWalkins" class="ui inverted green button">Walk-in: On</button>
+          <button ng-click="vm.toggleWalkin()" ng-show="!vm.user.isTakingWalkins" class="ui inverted grey button">Walk-in: Off</button>
+          <label ng-show="vm.user.isTakingWalkins">Taking Walk-Ins</label>
+          <label ng-show="!vm.user.isTakingWalkins">Not Taking Walk-Ins</label>
+        </div>
+        <div date-picker class="ui calendar animated fadeIn" id="calDatePicker"></div>
         <input style="display: none;" ng-model="vm.date" id="pickedDayVal" ng-model-options="{ updateOn: 'change' }"></input>
         <div ng-click="vm.resetDate()" class="ui button dateSelection blue fluid" id="viewAllbtn" ng-model-options="{ updateOn: 'change' }">View All</div>
       </div>
@@ -104,7 +110,6 @@
         
         <!-- List of appointments -->
         <div class="ui items segment animated fadeInUp"  ng-repeat="a in vm.appointments | orderBy:'appointmentDay' | filter: vm.date">
-          <div class="item" ng-hide="!vm.appointments.length">No appointments</div>
           <div class="item">
             <div class="left aligned content">
               <div class="header">{{a.customerFirstname}} {{a.customerLastname}}</div>
@@ -115,10 +120,8 @@
               </div>
             </div>
             <div class="right aligned content">
-              <div ng-click="vm.showModal()" class="ui right floated blue button">Manage Appointment</div>    
+              <div appt-modal ng-click="vm.showModal(a)" class="ui right floated blue button appbtn">Manage Appointment</div>
             </div>
-            <a ng-show="a.appointmentDate == vm.today" class="ui teal right ribbon label">Today</a>
-            <a ng-show="a.status == 'cancelled'" class="ui teal right ribbon label">Today</a>
           </div>
         </div>
       </div>

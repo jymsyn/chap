@@ -11,6 +11,7 @@ namespace app.Services {
     public UserLoginResource;
     
     public register(user){
+      console.log(user)
       return this.UserRegisterResource.save(user).$promise;
     };
     
@@ -23,6 +24,7 @@ namespace app.Services {
       this.status._id = u._id;
       this.status.username = u.username;
       this.status.email = u.email;
+      this.status.isTakingWalkins = u.isTakingWalkins;
     }
     
     public removeToken(){
@@ -33,6 +35,7 @@ namespace app.Services {
       this.status._id = null;
       this.status.username = null;
       this.status.email = null;
+      this.status.isTakingWalkins = null
     };
     
     public getToken() {
@@ -64,7 +67,16 @@ namespace app.Services {
       return q.promise;
     }
     
-
+    
+    public setWalkin(walkinStatus) {
+      let q = this.$q.defer();
+      this.$http.put('/api/v1/users/status', walkinStatus).then((res) => {
+        q.resolve(res.data);
+      }, (err) => {
+        q.reject(err);
+      })
+      return q.promise;
+    }
     
     constructor(
       private IGConverterService: app.Services.IGConverterService,

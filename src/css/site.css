@@ -8,6 +8,12 @@ h2.header{
   font-weight: 300 !important;
   margin-bottom: 2rem !important;
 }
+h3{
+  font-family: "Proxima Nova" !important;
+  font-size: 1.625rem !important;
+  line-height: 3rem !important;
+  font-weight: 300 !important;
+}
 .view{
   background-color: #EEEEEE;
   margin-top: 55px;

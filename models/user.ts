@@ -24,6 +24,7 @@ let UserSchema = new mongoose.Schema({
   website: String,
   address: String,
   location: {},
+  bio: String,
   hairstyles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Hairstyle'}],
   appointments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Appointment'}],
   appointmentDays: [{ type: mongoose.Schema.Types.ObjectId, ref: 'AppointmentDays'}],
@@ -50,7 +51,8 @@ UserSchema.method('generateJWT', function(){
   return jwt.sign({
     _id: this._id,
     username: this.username,
-    email: this.email
+    email: this.email,
+    isTakingWalkins: this.isTakingWalkins
   }, 'SecretKey')
 })
 
