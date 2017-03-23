@@ -1,12 +1,12 @@
 {
   "name": "chap",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Angular 1.5 ver of CHAP",
   "engines": {
     "node": "6.8.0"
   },
   "scripts": {
-    "start": "npm ./bin/www",
+    "start": "node ./bin/www",
     "devStart": "nodemon ./bin/www"
   },
   "license": "MIT",
