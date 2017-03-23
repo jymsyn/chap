@@ -1,0 +1,11 @@
+<style type=text/css>
+  .login_container{
+    position: relative;
+    max-width: 400px;
+    margin: auto;
+    transform: translateY(100%);
+  }
+  .login{
+    margin: 10px;
+  }
+</style><div class="ui animated fadeIn login_container"><div class="column login"><h2 class="ui teal header">Login to your account</h2><form class="ui large form" ng-submit=vm.login()><div class=field><div class="ui left icon input"><i class="user icon"></i> <input ng-model=vm.userInfo.username type=text name=email placeholder=Username></div></div><div class=field><div class="ui left icon input"><i class="lock icon"></i> <input ng-model=vm.userInfo.password type=password name=password placeholder=Password></div></div><button ng-disabled=registerForm.$invalid type=submit ng-show=!vm.loading class="ui fluid large teal submit button">Login</button> <button ng-show=vm.loading class="ui fluid large loading teal submit button">Loading</button></form><div class="ui message">New to us? <a ui-sref=Register>Sign Up</a></div></div></div>
