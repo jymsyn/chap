@@ -1,0 +1,49 @@
+{
+  "name": "chap",
+  "version": "0.0.1",
+  "description": "Angular 1.5 ver of CHAP",
+  "engines": {
+    "node": "6.8.0"
+  },
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "devStart": "nodemon ./bin/www"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@types/express-jwt": "0.0.34",
+    "@types/passport": "^0.3.3",
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^2.0.0",
+    "ejs": "^2.5.5",
+    "express": "^4.15.2",
+    "express-jwt": "^5.1.0",
+    "get-instagram-photo": "0.0.1",
+    "google-maps": "^3.2.1",
+    "jsonwebtoken": "^7.2.1",
+    "mongoose": "^4.9.1",
+    "morgan": "^1.8.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "serve-favicon": "^2.3.0",
+    "twilio": "^2.11.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-beautify": "^2.0.1",
+    "gulp-cache": "^0.4.5",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-notify": "^3.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^2.1.1",
+    "gulp-uglify": "^2.0.1"
+  }
+}
