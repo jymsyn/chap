@@ -1,5 +1,5 @@
 import * as express from 'express';
-import passport = require('Passport');
+var passport = require('Passport');
 import jwt = require('express-jwt');
 let auth = jwt({
   userProperty: 'payload',
