@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
-var passport = require('Passport');
+var passport = require('passport');
 var jwt = require("express-jwt");
 var auth = jwt({
     userProperty: 'payload',

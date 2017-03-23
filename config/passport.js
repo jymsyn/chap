@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var passport = require('Passport');
+var passport = require('passport');
 var mongoose = require("mongoose");
 var LocalStrategy = require('passport-local').Strategy;
 var User = mongoose.model('User');
