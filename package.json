@@ -6,7 +6,7 @@
     "node": "6.8.0"
   },
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "node ./bin/www",
     "devStart": "nodemon ./bin/www"
   },
   "license": "MIT",
